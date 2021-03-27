@@ -1,0 +1,23 @@
+{
+  "name": "expense_tracker_backend",
+  "version": "1.0.0",
+  "description": "Backend of expense tracker",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrakharKopergaonkar/Expense_Tracker_Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrakharKopergaonkar/Expense_Tracker_Backend/issues"
+  },
+  "homepage": "https://github.com/PrakharKopergaonkar/Expense_Tracker_Backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
