@@ -10,7 +10,7 @@
 
 ### Necessary API's.
 * POST /auth/signup : Registers user
-* POST /auth/signin : Lets user logged. Returns a jwt token that expires in 24hr.
+* POST /auth/signin : Lets user logged in. Returns a jwt token that expires in 24hr.
 
 ### Not necessary but helpful in development API's
 * GET /users/getAllUsers : Returns all Users
