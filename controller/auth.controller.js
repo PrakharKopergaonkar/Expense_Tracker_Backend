@@ -23,7 +23,7 @@ exports.signup = async (req, res) => {
       })
     })
     .catch((error) => {
-      console.log(error)
+      
       return res.status(500).json({
         status: false,
         error: error.message
@@ -59,6 +59,8 @@ exports.signin = (req, res) => {
         expiresIn: "24h"
        });
 
+       console.log("hi")
+
        return res.status(200).json({
         status: true,
         message: "Logged in successfully",
@@ -70,7 +72,7 @@ exports.signin = (req, res) => {
     .catch(err => {
       return res.status(500).json({
         status: false,
-        message: err.message
+        error: err.message
        });
      
     });
