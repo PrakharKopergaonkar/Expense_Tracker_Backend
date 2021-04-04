@@ -8,7 +8,7 @@ var bcrypt = require("bcryptjs");
 exports.signup = async (req, res) => {
   const body = req.body;
  
-
+   
    const user = User({
     name: body.NAME,
     email: body.EMAIL,
@@ -23,6 +23,7 @@ exports.signup = async (req, res) => {
       })
     })
     .catch((error) => {
+      console.log(error)
       return res.status(500).json({
         status: false,
         error: error.message

@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose =  require('mongoose');
 const bodyParser = require("body-parser");
-
+const cors = require("cors");
 const config = require('./config/config');
 const autoincrement = require("mongoose-auto-increment");
 
@@ -27,6 +27,8 @@ const app = express();
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
+
+app.use(cors())
 
 app.get("/", (req, res) => res.send("API Running"));
 
