@@ -5,6 +5,8 @@ const cors = require("cors");
 const config = require('./config/config');
 const autoincrement = require("mongoose-auto-increment");
 
+const expenseRoutes = require('./routes/expense.routes');
+
 // Connection URL
 mongoose.Promise = global.Promise
 mongoose.connect(config.mongoUri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false })
@@ -36,7 +38,7 @@ app.get("/", (req, res) => res.send("API Running"));
 //Define Routes
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
-
+require("./routes/expense.routes")(app);
 
 const PORT = process.env.PORT || 5000;
 

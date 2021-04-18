@@ -3,6 +3,8 @@ const User = db.users;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
+const expressJwt = require('express-jwt')
+const config = require('../config/config')
 
 
 exports.signup = async (req, res) => {
@@ -77,3 +79,9 @@ exports.signin = (req, res) => {
      
     });
 };
+
+exports.requireSignin = expressJwt({
+  secret: config.jwtSecret,
+  userProperty: 'auth',
+  algorithms: ['HS256']
+})
