@@ -63,10 +63,7 @@ app.post("/api/expenses",
   controller.create
 )
 
-// router.route('/api/expenses/:expenseId')
-//   // .get(authCtrl.requireSignin, expenseCtrl.read)
-//   .put(authCtrl.requireSignin, expenseCtrl.hasAuthorization, expenseCtrl.update)
-//   .delete(authCtrl.requireSignin, expenseCtrl.hasAuthorization, expenseCtrl.remove)
+
 app.put("/api/expenses/:expenseId",
   controller.update
 )
@@ -74,11 +71,17 @@ app.put("/api/expenses/:expenseId",
 app.delete("/api/expenses/:expenseId",
     controller.remove
 )
+ app.get('/api/expenses/:expenseId',
+  controller.read
+ )
+
+
+
+
 
 };
 
 
-// const router = express.Router()
 
 // router.route('/api/expenses/current/preview')
   
@@ -97,12 +100,8 @@ app.delete("/api/expenses/:expenseId",
 
 // router.route('/api/expenses')
 //   .post(authCtrl.requireSignin, expenseCtrl.create)
-//   .get(authCtrl.requireSignin, expenseCtrl.listByUser)
 
-// router.route('/api/expenses/:expenseId')
-//   // .get(authCtrl.requireSignin, expenseCtrl.read)
-//   .put(authCtrl.requireSignin, expenseCtrl.hasAuthorization, expenseCtrl.update)
-//   .delete(authCtrl.requireSignin, expenseCtrl.hasAuthorization, expenseCtrl.remove)
+
 
 // router.param('expenseId', expenseCtrl.expenseByID)
 

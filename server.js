@@ -9,6 +9,7 @@ const expenseRoutes = require('./routes/expense.routes');
 
 // Connection URL
 mongoose.Promise = global.Promise
+console.log(config.mongoUri)
 mongoose.connect(config.mongoUri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false })
 mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${config.mongoUri}`)
