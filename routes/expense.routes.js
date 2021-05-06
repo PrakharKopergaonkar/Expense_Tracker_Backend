@@ -28,27 +28,6 @@ const {
     next();
   });
 
-  // app.post(
-  //   "/api/auth/signup",
-  //   validate([
-  //     body('NAME').not().isEmpty().withMessage('Please Enter the Name.'),
-  //     body('EMAIL').not().isEmpty().isEmail().withMessage('Please Enter the valid Email Address.'),
-  //     body('PASSWORD').not().isEmpty().isLength({
-  //      min: 5
-  //     }).withMessage('Password must be at least 5 character long'),
-      
-  //    ]),
-  //   controller.signup
-  // );
-
-  
-
-  // app.post("/api/auth/signin",
-  // validate([
-  //   body('EMAIL').not().isEmpty().withMessage('Please Enter the valid Email Address.'),
-  //   body('PASSWORD').not().isEmpty().withMessage('Please Enter Password')
-  //  ]), controller.signin);
-
   app.get(
     '/api/expenses/current/preview',
     controller.currentMonthPreview
@@ -82,28 +61,4 @@ app.delete("/api/expenses/:expenseId",
 };
 
 
-
-// router.route('/api/expenses/current/preview')
-  
-
-// router.route('/api/expenses/by/category')
-//   .get(authCtrl.requireSignin, expenseCtrl.expenseByCategory)
-
-// router.route('/api/expenses/plot')
-//   .get(authCtrl.requireSignin, expenseCtrl.plotExpenses)
-
-// router.route('/api/expenses/category/averages')
-//   .get(authCtrl.requireSignin, expenseCtrl.averageCategories)
-
-// router.route('/api/expenses/yearly')
-//   .get(authCtrl.requireSignin, expenseCtrl.yearlyExpenses)
-
-// router.route('/api/expenses')
-//   .post(authCtrl.requireSignin, expenseCtrl.create)
-
-
-
-// router.param('expenseId', expenseCtrl.expenseByID)
-
-// module.exports = router
 
