@@ -54,6 +54,10 @@ app.delete("/api/expenses/:expenseId",
   controller.read
  )
 
+ app.get('/api/expense/getExpenseReport')
+  .get(controller.getExpenseReport)
+
+
 
 
 

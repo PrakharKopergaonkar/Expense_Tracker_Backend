@@ -1,5 +1,6 @@
 const Expense =  require('../models/expense.model')
 const extend = require('lodash/extend')
+const Parser =  require('json2csv').Parser;
 const mongoose =  require('mongoose')
 
 const create = async (req, res) => {
@@ -230,6 +231,66 @@ const remove = async (req, res) => {
     }
 }
 
+const getExpenseReport = async (req, res) => {
+  let firstDay = req.query.firstDay
+  let lastDay = req.query.lastDay
+  try {
+    let expenses = await Expense.find({'$and':[{'incurred_on':{'$gte': firstDay, '$lte':lastDay}}, {'recorded_by': req.auth._id}]}).sort('incurred_on').populate('recorded_by', '_id name')
+    let csv_data = []
+    const fields = [
+      {
+        label: 'Title',
+        value: 'title'
+      },
+      {
+        label: 'Category',
+        value: 'category'
+      },
+      {
+       label: 'Amount Excl GST',
+        value: 'amount'
+      },
+      {
+        label: 'incurred_on',
+        value: 'incurred_on'
+      },
+      {
+          label: 'Notes',
+          value: 'notes'
+      },
+      {
+        label: 'Amount (in rupee)',
+        value: 'amount'
+    },
+    ];
+
+    for (const key in expenses) {
+      csv_data.push({
+        title:expenses[key].title,
+        category:expenses[key].category,
+        amount: expenses[key].amount,
+        notes: expenses[key].notes,
+        incurred_on:expenses[key].incurred_on ? expenses[key].incurred_on.toISOString().split('T')[0] : ''
+    })
+    const json2csv = new Parser({ fields });
+    const csv = json2csv.parse(csv_data);
+        
+
+    res.attachment('filename.csv');
+    res.header("Content-Type", "text/csv");
+    console.log(csv)
+    res.status(200).send(csv);
+    }
+    
+  } catch (err){
+    console.log(err)
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
+
 const hasAuthorization = (req, res, next) => {
   const authorized = req.expense && req.auth && req.expense.recorded_by._id == req.auth._id
   if (!(authorized)) {
@@ -252,5 +313,6 @@ module.exports = {
     listByUser,
     remove,
     update,
+    getExpenseReport,
     hasAuthorization
 }
